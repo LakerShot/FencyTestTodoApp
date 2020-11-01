@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {Footer, NewTaskForm, TaskList} from './components'
-import ContextWrapper from './context'
 import './index.css'
 
 const App = () => {
@@ -29,7 +28,6 @@ const App = () => {
   }
 
   return (
-    <ContextWrapper>
       <section className="todoapp">
         <header className="header">
           <h1>todos</h1>
@@ -45,7 +43,6 @@ const App = () => {
           <Footer/>
         </section>
       </section>
-    </ContextWrapper>
   )
 }
 
