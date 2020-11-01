@@ -121,4 +121,10 @@ body {
   color: #737373;
 }
 
+.noTodos {
+  text-align: center;
+  color: #737373;
+  padding: .5rem;
+}
+
 

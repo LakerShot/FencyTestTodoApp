@@ -1,4 +1,5 @@
 import React from 'react'
+import './TasksFilter.css'
 
 const TasksFilter = () => {
   return (
@@ -8,10 +9,10 @@ const TasksFilter = () => {
           <button className="selected">All</button>
         </li>
         <li>
-          <button>Active</button>
+          <button >Active</button>
         </li>
         <li>
-          <button>Completed</button>
+          <button >Completed</button>
         </li>
       </ul>
     </>
