@@ -1,13 +1,20 @@
 import React from 'react'
 import Task from './Task'
+import { v4 as uuidv4 } from 'uuid';
 import './TaskList.css'
 
-const TaskList = ({ todos, toggleTodo, removeTodo }) => {
+const TaskList = ({ filteredTodos, toggleTodo, removeTodo, editTodo }) => {
   return (
     <>
       <ul className="todo-list">
-        {todos.map(todo => (
-          <Task todo={todo} key={todo.id} onChangeTodo={toggleTodo} removeTodo={removeTodo}/>
+        {filteredTodos.map(todo => (
+          <Task
+            todo={todo}
+            key={uuidv4()}
+            onChangeTodo={toggleTodo}
+            removeTodo={removeTodo}
+            editTodo={editTodo}
+          />
         ))}
       </ul>
     </>

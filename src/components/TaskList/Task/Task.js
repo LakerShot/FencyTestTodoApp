@@ -1,12 +1,26 @@
 import React, { useState } from 'react'
 import './Task.css'
 
-const Task = ({ todo, onChangeTodo, removeTodo }) => {
-  // const [title, setTitle] = useState(todo.title)
-  // console.log(title)
+const Task = ({ todo, onChangeTodo, removeTodo, editTodo }) => {
+  const [title, setTitle] = useState(todo.title)
+
+  let result = ''
+
+  if (todo.completed) {
+    result = 'completed'
+  } else if (todo.isEditing) {
+    result = 'editing'
+  }
+
+  const handlePressHandler = (e) => {
+    if (e.charCode === 13 && title.trim() !== '') {
+      editTodo(todo.id, title)
+    }
+  }
+
   return (
     <>
-      <li className={todo.completed ? "completed" : ''}>
+      <li className={result}>
         <div className="view">
           <input
             className="toggle"
@@ -16,29 +30,30 @@ const Task = ({ todo, onChangeTodo, removeTodo }) => {
           />
           <label>
             <span className="description">{todo.title}</span>
-            <span className="created">{todo.createdAt}</span>
+            <span className="created">created {todo.createdAt} ago</span>
           </label>
-          <button className="icon icon-edit"></button>
+          <button 
+            className="icon icon-edit"
+            onClick={() => editTodo(todo.id, title)}
+          ></button>
           <button
             className="icon icon-destroy"
             onClick={() => removeTodo(todo.id)}
           ></button>
         </div>
+        {todo.isEditing &&
+          <input
+            type="text"
+            className="edit"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            onKeyPress={handlePressHandler}
+          />
+        }
       </li>
-      {/* <li className="editing">
-        <div className="view">
-          <input className="toggle" type="checkbox" />
-          <label>
-            <span className="description">Editing task</span>
-            <span className="created">created 5 minutes ago</span>
-          </label>
-          <button className="icon icon-edit"></button>
-          <button className="icon icon-destroy"></button>
-        </div>
-        <input type="text" className="edit" value="Editing task" />
-      </li> */}
     </>
   )
 }
+
 
 export default Task
