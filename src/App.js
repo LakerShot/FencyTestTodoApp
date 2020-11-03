@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import {Footer, NewTaskForm, TaskList} from './components'
+import useLocalStorage from './hooks/useLocalStorage'
 import './index.css'
 
 const App = () => {
   const [status, setStatus] = useState('All')
-  const [todos, setTodos] = useState([
-    {id: 1, completed: false, title: 'mockTask1', isEditing: false},
-    {id: 2, completed: true, title: 'mockTask2', isEditing: false},
-    {id: 3, completed: false, title: 'mockTask3', isEditing: false},
-  ])
+  const [todos, setTodos] = useState([])
   const [filteredTodos, setFilteredTodos] = useState([])
+  const [storedTodos, setStoredTodos] = useLocalStorage("todos", todos);
+
 
   const itemsComplitedLength = todos.filter(todo => todo.completed).length
   const itemsLeftCount = todos.length - itemsComplitedLength
+
+  useEffect(() => {
+    setTodos(storedTodos)
+  }, [])
 
   useEffect(() => {
 
@@ -31,6 +34,8 @@ const App = () => {
     }
 
     filterHandler()
+    setStoredTodos(todos)
+
   }, [todos, status])
 
   const toggleTodo = (id) => {
@@ -51,7 +56,6 @@ const App = () => {
   }
 
   const editTodo = (id, changedTitle) => {
-    console.log(changedTitle)
     setTodos(todos.map(todo => {
       if (todo.id === id) {
         todo.isEditing = !todo.isEditing
