@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { formatRelative, subDays } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns'
+import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 import './NewTaskForm.css'
 
 const NewTaskForm = ({ addTodos }) => {
@@ -9,9 +11,10 @@ const NewTaskForm = ({ addTodos }) => {
     if (e.charCode === 13 && todoTitle.trim() !== '') {
       const newTodo = {
         title: todoTitle,
-        id: Date.now(),
+        id: uuidv4(),
         completed: false,
-        createdAt: formatRelative(subDays(new Date(), 0), new Date())
+        isEditing: false,
+        createdAt: formatDistanceToNow(new Date())
       }
       addTodos(newTodo)
       setTodoTitle('')
@@ -27,6 +30,10 @@ const NewTaskForm = ({ addTodos }) => {
       value={todoTitle}
     />
   )
+}
+
+NewTaskForm.propTypes = {
+  addTodos: PropTypes.func.isRequired
 }
 
 export default NewTaskForm
