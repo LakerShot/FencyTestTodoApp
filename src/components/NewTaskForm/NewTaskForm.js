@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 import './NewTaskForm.css'
 
 const NewTaskForm = ({ addTodos }) => {
@@ -29,6 +30,10 @@ const NewTaskForm = ({ addTodos }) => {
       value={todoTitle}
     />
   )
+}
+
+NewTaskForm.propTypes = {
+  addTodos: PropTypes.func.isRequired
 }
 
 export default NewTaskForm

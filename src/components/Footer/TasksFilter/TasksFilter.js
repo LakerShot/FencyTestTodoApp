@@ -1,8 +1,9 @@
 import React from 'react'
-import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 import './TasksFilter.css'
+import { v4 as uuidv4 } from 'uuid';
 
-const TasksFilter = ({ status, setStatus, filtersBtn }) => {
+const TasksFilter = ({ status = 'All', setStatus, filtersBtn = [] }) => {
 
   const statusHandler = (e) => {
     const {text} = e.target.dataset
@@ -26,6 +27,12 @@ const TasksFilter = ({ status, setStatus, filtersBtn }) => {
       </ul>
     </>
   )
+}
+
+TasksFilter.propTypes = {
+  status: PropTypes.string.isRequired,
+  setStatus: PropTypes.func.isRequired,
+  filtersBtn: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 export default TasksFilter

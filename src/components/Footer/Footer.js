@@ -1,8 +1,9 @@
 import React from 'react'
 import TasksFilter from './TasksFilter'
+import PropTypes from 'prop-types';
 import './Footer.css'
 
-const Footer = ({ itemsLeftCount, clearComplitedTodos, status, setStatus}) => {
+const Footer = ({ itemsLeftCount, clearComplitedTodos, status = 'All', setStatus}) => {
   const oneOrManyTasks = itemsLeftCount > 0 ? 'task' : 'tasks'
   const filtersBtn = ['All', 'Active', 'Completed']
   return (
@@ -29,6 +30,13 @@ const Footer = ({ itemsLeftCount, clearComplitedTodos, status, setStatus}) => {
       </footer>
     </>
   )
+}
+
+Footer.propTypes = {
+  itemsLeftCount: PropTypes.number.isRequired,
+  clearComplitedTodos: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
+  setStatus: PropTypes.func.isRequired
 }
 
 export default Footer

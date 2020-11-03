@@ -3,7 +3,6 @@ import {Footer, NewTaskForm, TaskList} from './components'
 import './index.css'
 
 const App = () => {
-  console.log('render')
   const [status, setStatus] = useState('All')
   const [todos, setTodos] = useState([
     {id: 1, completed: false, title: 'mockTask1', isEditing: false},
@@ -16,6 +15,21 @@ const App = () => {
   const itemsLeftCount = todos.length - itemsComplitedLength
 
   useEffect(() => {
+
+    const filterHandler = () => {
+      switch(status) {
+        case 'Completed':
+          setFilteredTodos(todos.filter(todo => todo.completed))
+          break
+        case 'Active':
+          setFilteredTodos(todos.filter(todo => !todo.completed))
+          break
+        default:
+          setFilteredTodos(todos)
+          break
+      }
+    }
+
     filterHandler()
   }, [todos, status])
 
@@ -49,20 +63,6 @@ const App = () => {
 
   const clearComplitedTodos = () => {
     setTodos(todos.filter(todo => !todo.completed))
-  }
-
-  const filterHandler = () => {
-    switch(status) {
-      case 'Completed':
-        setFilteredTodos(todos.filter(todo => todo.completed))
-        break
-      case 'Active':
-        setFilteredTodos(todos.filter(todo => !todo.completed))
-        break
-      default:
-        setFilteredTodos(todos)
-        break
-    }
   }
 
   return (

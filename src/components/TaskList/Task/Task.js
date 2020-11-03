@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types';
 import './Task.css'
 
-const Task = ({ todo, onChangeTodo, removeTodo, editTodo }) => {
+const Task = ({ todo = {}, onChangeTodo, removeTodo, editTodo }) => {
   const [title, setTitle] = useState(todo.title)
 
   let result = ''
@@ -55,5 +56,11 @@ const Task = ({ todo, onChangeTodo, removeTodo, editTodo }) => {
   )
 }
 
+Task.propTypes = {
+  todo: PropTypes.object.isRequired,
+  onChangeTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired
+}
 
 export default Task
