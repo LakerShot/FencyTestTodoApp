@@ -18,6 +18,7 @@ const TasksFilter = ({ status = 'All', setStatus, filtersBtn = [] }) => {
               onClick={statusHandler}
               className={status === buttonText ? 'selected' : ''}
               data-text={buttonText}
+              type="button"
             >
               {buttonText}
             </button>

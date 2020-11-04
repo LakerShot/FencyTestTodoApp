@@ -39,6 +39,7 @@ const Footer = ({
         <button
           className="clear-completed"
           onClick={() => clearComplitedTodos()}
+          type="button"
         >
           Clear completed
         </button>

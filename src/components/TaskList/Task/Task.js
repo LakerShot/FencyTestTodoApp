@@ -43,10 +43,12 @@ const Task = ({
           <button
             className="icon icon-edit"
             onClick={() => editTodo(todo.id, title)}
+            type="button"
           />
           <button
             className="icon icon-destroy"
             onClick={() => removeTodo(todo.id)}
+            type="button"
           />
         </div>
         {todo.isEditing
@@ -65,7 +67,7 @@ const Task = ({
 }
 
 Task.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo: PropTypes.shape({}).isRequired,
   onChangeTodo: PropTypes.func.isRequired,
   removeTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
