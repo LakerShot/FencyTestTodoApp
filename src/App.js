@@ -14,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     setTodos(storedTodos)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const App = () => {
 
     filterHandler()
     setStoredTodos(todos)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [todos, status])
 
   const toggleTodo = (id) => {
@@ -85,7 +87,7 @@ const App = () => {
               editTodo={editTodo}
             />
           )
-          : <p className="noTodos">There's no todos yet</p>}
+          : <p className="noTodos">There&apos;s no todos yet</p>}
         <Footer
           itemsLeftCount={itemsLeftCount}
           clearComplitedTodos={clearComplitedTodos}

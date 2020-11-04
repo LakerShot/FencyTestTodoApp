@@ -26,7 +26,6 @@ const NewTaskForm = ({ addTodos }) => {
       onChange={(e) => setTodoTitle(e.target.value)}
       className="new-todo"
       placeholder="What needs to be done?"
-      autoFocus
       value={todoTitle}
     />
   )
