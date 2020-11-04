@@ -23,7 +23,7 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "precommit": "lint-staged",
-    "prettierFormat": "prettier --write src/**/*.js"
+    "prettierFormat": "prettier --write --ignore-unknown"
   },
   "eslintConfig": {
     "extends": [
