@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import { v4 as uuidv4 } from 'uuid';
-import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid'
+import PropTypes from 'prop-types'
 import './NewTaskForm.css'
 
 const NewTaskForm = ({ addTodos }) => {
@@ -14,7 +14,7 @@ const NewTaskForm = ({ addTodos }) => {
         id: uuidv4(),
         completed: false,
         isEditing: false,
-        createdAt: formatDistanceToNow(new Date())
+        createdAt: formatDistanceToNow(new Date()),
       }
       addTodos(newTodo)
       setTodoTitle('')
@@ -22,8 +22,8 @@ const NewTaskForm = ({ addTodos }) => {
   }
   return (
     <input
-      onKeyPress={e => handlePress(e)}
-      onChange={e => setTodoTitle(e.target.value)}
+      onKeyPress={(e) => handlePress(e)}
+      onChange={(e) => setTodoTitle(e.target.value)}
       className="new-todo"
       placeholder="What needs to be done?"
       autoFocus
@@ -33,7 +33,7 @@ const NewTaskForm = ({ addTodos }) => {
 }
 
 NewTaskForm.propTypes = {
-  addTodos: PropTypes.func.isRequired
+  addTodos: PropTypes.func.isRequired,
 }
 
 export default NewTaskForm
