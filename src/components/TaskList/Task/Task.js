@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import './Task.css'
 
-const Task = ({ todo = {}, onChangeTodo, removeTodo, editTodo }) => {
+const Task = ({
+  todo = {}, onChangeTodo, removeTodo, editTodo,
+}) => {
   const [title, setTitle] = useState(todo.title)
 
   let result = ''
@@ -31,18 +33,24 @@ const Task = ({ todo = {}, onChangeTodo, removeTodo, editTodo }) => {
           />
           <label>
             <span className="description">{todo.title}</span>
-            <span className="created">created {todo.createdAt} ago</span>
+            <span className="created">
+              created
+              {todo.createdAt}
+              {' '}
+              ago
+            </span>
           </label>
-          <button 
+          <button
             className="icon icon-edit"
             onClick={() => editTodo(todo.id, title)}
-          ></button>
+          />
           <button
             className="icon icon-destroy"
             onClick={() => removeTodo(todo.id)}
-          ></button>
+          />
         </div>
-        {todo.isEditing &&
+        {todo.isEditing
+          && (
           <input
             type="text"
             className="edit"
@@ -50,7 +58,7 @@ const Task = ({ todo = {}, onChangeTodo, removeTodo, editTodo }) => {
             onChange={(e) => setTitle(e.target.value)}
             onKeyPress={handlePressHandler}
           />
-        }
+          )}
       </li>
     </>
   )
@@ -60,7 +68,7 @@ Task.propTypes = {
   todo: PropTypes.object.isRequired,
   onChangeTodo: PropTypes.func.isRequired,
   removeTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired
+  editTodo: PropTypes.func.isRequired,
 }
 
 export default Task
